@@ -3,6 +3,7 @@
   const path = require('path');
 
 const server = http.createServer((req, res) => {
+    Response.writeHead(200, {'Content-Type': 'text/html'});
     const filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
     fs.access(filePath, fs.constants.F_OK, (err) => {
         if(err) {
