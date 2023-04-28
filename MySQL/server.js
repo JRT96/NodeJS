@@ -12,12 +12,12 @@ connection.connect((err) => {
     console.log('Connected to MySQL database!');
 });
 
-const sql = "SELECT * FROM testingtb WHERE city = ?";
+const sql = "DELETE FROM testingtb WHERE city = ?";
 const city = ['London'];
 
 connection.query(sql, [city], (err, result, fields) => {
     if (err) throw err;
-    console.log(result);
+    console.log(`${result.affectedRows} record(s) deleted`);
 });
 
 
