@@ -12,13 +12,6 @@ connection.connect((err) => {
     console.log('Connected to MySQL database!');
 });
 
-// const sql = "INSERT INTO testingtb (name, email, city) VALUES ?";
-// const values = [
-//     ['John Doe', 'john@doe.com', 'London'],
-//     ['Mary Doe', 'mary@doe.com', 'Paris'],
-//     ['Peter Doe', 'bob@doe.com', 'New York']
-// ];
-
 const sql = "SELECT * FROM testingtb WHERE city = ?";
 const city = ['London'];
 
