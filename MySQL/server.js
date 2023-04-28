@@ -7,22 +7,30 @@ const connection = mysql.createConnection({
     database: 'testingdb'
 });
 
-const sql = "INSERT INTO testingtb (name, email, city) VALUES ?";
-const values = [
-    ['John Doe', 'john@doe.com', 'London'],
-    ['Mary Doe', 'mary@doe.com', 'Paris'],
-    ['Peter Doe', 'bob@doe.com', 'New York']
-];
-
 connection.connect((err) => {
     if (err) throw err;
     console.log('Connected to MySQL database!');
 });
 
-connection.query(sql, [values], (err, result) => {
+// const sql = "INSERT INTO testingtb (name, email, city) VALUES ?";
+// const values = [
+//     ['John Doe', 'john@doe.com', 'London'],
+//     ['Mary Doe', 'mary@doe.com', 'Paris'],
+//     ['Peter Doe', 'bob@doe.com', 'New York']
+// ];
+
+const sql = "SELECT * FROM testingtb WHERE city = ?";
+const city = ['London'];
+
+connection.query(sql, [city], (err, result, fields) => {
     if (err) throw err;
-    console.log(`${result.affectedRows} rows inserted into testingtb`);
+    console.log(result);
 });
+
+
+
+
+
 
 
 
