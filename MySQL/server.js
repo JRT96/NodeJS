@@ -12,13 +12,13 @@ connection.connect((err) => {
     console.log('Connected to MySQL database!');
 });
 
-const sql = "DELETE FROM testingtb WHERE city = ?";
-const city = ['London'];
+const newEmail = 'new_email@example.com';
 
-connection.query(sql, [city], (err, result, fields) => {
-    if (err) throw err;
-    console.log(`${result.affectedRows} record(s) deleted`);
+connection.query(`UPDATE testingtb SET email = ? WHERE idtestingtb = ?`, [newEmail,2], (error, results, fields) => {
+    if (error) throw error;
+    console.log('User updated successfully!');
 });
+
 
 
 
