@@ -155,3 +155,41 @@ let listPeople = (req, res) => {
 
 };
 
+let deleteUser  = (req, res) => {
+  let body = '';
+  req.on('data', (chunk) => {
+    body += chunk.toString();
+  });
+  req.on('end', () => {
+    const data = new URLSearchParams(body);
+    const person = Object.fromEntries(data);
+    console.log(person);
+    connection.query('DELETE FROM users WHERE id = ?', person.id, (err, result) => {
+      if (err) throw err;
+      console.log('Person deleted from database.');
+      res.writeHead(302, { location: '/' });
+      res.end();
+    });
+  });
+
+};
+
+let updateUser = (req, res) => {
+  let body = '';
+  req.on('data', (chunk) => {
+    body += chunk.toString();
+  });
+  req.on('end', () => {
+    const data = new URLSearchParams(body);
+    const person = Object.fromEntries(data);
+    console.log(person);
+    connection.query('UPDATE users SET ? WHERE id = ?', [person, person.id], (err, result) => {
+      if (err) throw err;
+      console.log('Person updated in database.');
+      res.writeHead(302, { location: '/' });
+      res.end();
+    });
+  });
+
+
+};
